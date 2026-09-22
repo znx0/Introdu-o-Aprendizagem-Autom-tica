@@ -1,2 +1,2 @@
-# Introdu-o-Aprendizagem-Autom-tica
+# Intro à Aprendizagem Automática
 Projetos
