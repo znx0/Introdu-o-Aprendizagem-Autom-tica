@@ -27,7 +27,7 @@
 
 4. **Correr o código:**
 ```bash
-   python main.py Xtrain.pkl
+   python kmeans.py Xtrain.pkl
 ```
    ou abrir `main.ipynb` no Jupyter / Google Colab.
 
