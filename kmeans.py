@@ -1,7 +1,9 @@
 import numpy as np
+import panda as pd
+import sys
+
 # NAO MODIFICAR A SEED
 np.random.seed(555)
-
 
 def kminit(X, K, flag):
     """
@@ -41,6 +43,7 @@ def kminit(X, K, flag):
 
     return np.array(C)  # matriz de centróides/clusters
 
+#------------------------------------------------------------------------------------#
 
 def kmeans_custo(X, C, s):
     """
@@ -66,7 +69,8 @@ def kmeans_custo(X, C, s):
     J = np.sum(dists_sq)
 
     return dists_sq, J
-
+    
+#------------------------------------------------------------------------------------#
 
 def kmeans(X, K, flag, max_iter=300, tol=1e-6):
     """
@@ -119,3 +123,33 @@ def kmeans(X, K, flag, max_iter=300, tol=1e-6):
     z = np.argmin(dists, axis=1)
 
     return C, z
+
+#------------------------------------------------------------------------------------#
+
+# Garante que o bloco só corre quando corre o ficheiro diretamente
+if __name__ == "__main__":
+    filename = sys.argv[1] if len(sys.argv) > 1 else "Xtrain.pkl"
+# Forma flexivel de não ter o nome do fichieor fixo no código
+    df_train = pd.read_pickle(filename)
+    X = np.concatenate(df_train['Skeleton_Sequence'].to_numpy())
+    print("Shape de X:", X.shape)  # deve dar (N, 66)
+    
+# Para testes/debug podemos meter K=valor fixo     
+K_valores = range(1, 11)  # testa K de 1 a 10, temos que alterar consoante o enunciado
+    custos = []
+
+    for K in K_valores:
+        C, z = kmeans(X, K, flag="random")
+        _, J = kmeans_custo(X, C, z)
+        custos.append(J)
+        print(f"K={K} -> custo J={J:.2f}")
+
+    # --- Gráfico ---
+    import matplotlib.pyplot as plt
+
+    plt.plot(list(K_valores), custos, marker='o')
+    plt.xlabel("Número de centróides (K)")
+    plt.ylabel("Custo J")
+    plt.title("Custo do k-means em função de K (inicialização random)")
+    plt.savefig("PartI2a.jpg")  # nome pedido no enunciado
+    plt.show()
