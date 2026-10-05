@@ -5,7 +5,7 @@
 
 * Criei o ficheiro `requirements.txt` caso não tenhas algumas bibliotecas necessárias para o correr do programa, mas podem faltar algumas.
 
-## Como começar (para quem ainda não tem o repo)
+## Como começar (como ainda não tens o repo)
 
 1. **Clonar o repositório:**
 ```bash
@@ -31,13 +31,13 @@
 ```
    ou abrir `main.ipynb` no Jupyter / Google Colab.
 
-## Fluxo de trabalho em grupo (git)
+## Fluxo de trabalho (git)
 
 Antes de começares a trabalhar:
 ```bash
 git pull
 ```
-para garantires que tens as últimas alterações do teu colega.
+para garantires que tens as últimas alterações
 
 Depois de fazeres alterações:
 ```bash
