@@ -1,0 +1,17 @@
+5a) Preparação dos dados: as poses foram concatenadas numa matriz X com 66 características por amostra. 
+Aplicou-se StandardScaler antes do PCA, centrando e escalando as características.
+
+Aplicação do PCA: utilizou-se PCA() sem especificar previamente o número de componentes nem um limiar de variância explicada.
+
+Determinação do número de componentes: calculou-se a variância explicada acumulada através da soma cumulativa de explained_variance_ratio_. 
+Identificou-se o primeiro número de componentes para o qual essa soma atingiu pelo menos 95%.
+
+Resultado: foram necessárias 8 componentes principais, que explicam 95,2464% da variância total dos dados normalizados.
+
+Figura: o gráfico PartII5a.jpg apresenta a variância explicada acumulada em função do número de componentes, assinalando o limiar de 95% e o ponto em que este é atingido.
+
+Output: Componentes para 95% da variância: 8
+	Variância acumulada com esse número: 95.2464%
+	Número total de componentes: 66
+	Variância explicada pelas primeiras 7: 93.4013%
+	Variância explicada pelas primeiras 8: 95.2464%
