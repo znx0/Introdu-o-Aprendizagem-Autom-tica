@@ -1,155 +1,228 @@
 import numpy as np
-import panda as pd
+import pandas as pd
 import sys
+import matplotlib.pyplot as plt
 
 # NAO MODIFICAR A SEED
 np.random.seed(555)
 
+
+# -------------------------------------------------------------------
+# Inicializacao dos centroides
+# -------------------------------------------------------------------
+
 def kminit(X, K, flag):
     """
-    Inicialização - pode ser aleatória ou recorrendo ao k-means++
+    Inicializa K centroides usando inicializacao aleatoria ou k-means++.
 
     Input:
-    X: um numpy ndarray com dimensões (N,d), em que cada linha corresponde
-       a uma amostra
-    K: um inteiro que corresponde ao número de clusters a estimar
-    flag: indicador sobre o tipo de inicialização ("random" ou "km++")
+        X: ndarray com dimensoes (N, d)
+        K: numero de clusters
+        flag: "random" ou "km++"
 
     Output:
-    C: um numpy ndarray com dimensões (K,d), onde cada linha é a inicialização
-       de um dos centróides
+        C: ndarray com dimensoes (K, d)
     """
-  
-    # A inicialização do primeiro centróide é fixa
+
     N = X.shape[0]
-    C = []
-    C.append(X[np.random.randint(N)])
 
-    if flag == 'random':
-        # escolher K-1 centróides, aleatoriamente, a partir de X
-        cluster = np.random.choice(N, size=K - 1, replace=False)
-        for idx in cluster:
-            C.append(X[idx])
+    if not 1 <= K <= N:
+        raise ValueError("K tem de estar entre 1 e N.")
 
-    elif flag == 'km++':
+    if flag not in ("random", "km++"):
+        raise ValueError("flag tem de ser 'random' ou 'km++'.")
+
+    # Inicializacao do primeiro centroide
+    primeiro_idx = np.random.randint(N)
+    indices = [primeiro_idx]
+    C = [X[primeiro_idx].copy()]
+
+    if flag == "random":
+        # Escolher os restantes centroides sem repetir indices
+        restantes = np.delete(np.arange(N), primeiro_idx)
+        escolhidos = np.random.choice(
+            restantes, size=K - 1, replace=False
+        )
+        for idx in escolhidos:
+            C.append(X[idx].copy())
+
+    elif flag == "km++":
         for _ in range(K - 1):
             C_arr = np.array(C)
-            # distância² de cada ponto ao centróide mais próximo já escolhido
-            dists = np.sum((X[:, np.newaxis, :] - C_arr[np.newaxis, :, :]) ** 2, axis=2)
+
+            # Distancia quadratica de cada ponto ao centroide mais proximo
+            dists = np.sum(
+                (X[:, np.newaxis, :] - C_arr[np.newaxis, :, :]) ** 2,
+                axis=2
+            )
             min_dists = np.min(dists, axis=1)
-            probs = min_dists / np.sum(min_dists)
-            idx = np.random.choice(N, p=probs)
-            C.append(X[idx])
 
-    return np.array(C)  # matriz de centróides/clusters
+            # Evitar escolher novamente um indice ja selecionado
+            min_dists[indices] = 0.0
+            soma = np.sum(min_dists)
 
-#------------------------------------------------------------------------------------#
+            if soma > 0:
+                probs = min_dists / soma
+                idx = np.random.choice(N, p=probs)
+            else:
+                # Se todas as distancias forem zero, escolher
+                # um indice ainda nao selecionado
+                restantes = np.setdiff1d(
+                    np.arange(N), indices
+                )
+                idx = np.random.choice(restantes)
+
+            indices.append(idx)
+            C.append(X[idx].copy())
+
+    return np.array(C)
+
+
+# -------------------------------------------------------------------
+# Calculo da funcao de custo
+# -------------------------------------------------------------------
 
 def kmeans_custo(X, C, s):
     """
-    Calcula a função de custo do k-means
+    Calcula as distancias quadradas aos centroides atribuidos
+    e o custo total J.
 
     Input:
-    X: um numpy ndarray com dimensões (N,d), em que cada linha corresponde
-       a uma amostra
-    C: um numpy ndarray com dimensões (K,d), onde cada linha é a inicialização
-       de um dos centróides
-    s: um numpy ndarray de dimensão (N,) onde cada entrada é um inteiro que
-       representa o índice do cluster para o ponto xi
+        X: ndarray (N, d)
+        C: ndarray (K, d)
+        s: ndarray (N,) com os indices dos clusters
 
-    Returns squared Euclidean distances from each point to the center of
-    its assigned cluster (dists_sq), e o custo total J (soma dessas distâncias)
+    Output:
+        dists_sq: distancias quadradas (N,)
+        J: soma das distancias quadradas
     """
-  
+
     centros_atribuidos = C[s]
 
-    # distância euclidiana ao quadrado entre cada ponto e o seu centróide
-    dists_sq = np.sum((X - centros_atribuidos) ** 2, axis=1)
-    # soma dos custos
+    dists_sq = np.sum(
+        (X - centros_atribuidos) ** 2,
+        axis=1
+    )
+
     J = np.sum(dists_sq)
 
     return dists_sq, J
-    
-#------------------------------------------------------------------------------------#
+
+
+# -------------------------------------------------------------------
+# Algoritmo k-means
+# -------------------------------------------------------------------
 
 def kmeans(X, K, flag, max_iter=300, tol=1e-6):
     """
-    Aplica o algoritmo k-means à matriz de dados X.
+    Aplica o algoritmo k-means.
 
-    X: um numpy ndarray com dimensões (N,d), em que cada linha corresponde
-       a uma amostra
-    K: um inteiro que corresponde ao número de clusters a estimar
-    flag: indicador sobre o tipo de inicialização ("random" ou "km++")
-
-    Devolve um tuplo contendo (C, z):
-    C: um numpy ndarray com dimensões (K,d), onde cada linha é o centróide final
-    z: um numpy ndarray de dimensão (N,) onde cada entrada é um inteiro
-       que representa o índice do cluster para o ponto x(i)
+    Output:
+        C: centroides finais (K, d)
+        z: atribuicoes finais (N,)
     """
-  
+
     N, d = X.shape
 
-    # Inicialização dos centróides
+    # Inicializacao
     C = kminit(X, K, flag)
 
     J_anterior = None
 
     for _ in range(max_iter):
 
-        # Passo de atribuição: associa cada ponto ao centróide mais próximo
-        dists = np.sum((X[:, np.newaxis, :] - C[np.newaxis, :, :]) ** 2, axis=2)
+        # Passo 1: atribuicao dos pontos aos centroides mais proximos
+        dists = np.sum(
+            (X[:, np.newaxis, :] - C[np.newaxis, :, :]) ** 2,
+            axis=2
+        )
         z = np.argmin(dists, axis=1)
 
-        # Passo de atualização: recalcula cada centróide como a média dos pontos do cluster
+        # Passo 2: atualizacao dos centroides
         C_novo = np.zeros((K, d))
+
         for k in range(K):
             pontos_k = X[z == k]
+
             if len(pontos_k) > 0:
                 C_novo[k] = pontos_k.mean(axis=0)
             else:
-                # cluster vazio: reinicializa com um ponto aleatório
+                # Reinicializar clusters vazios num ponto de X
                 C_novo[k] = X[np.random.randint(N)]
 
+        # Atualizar centroides
         C = C_novo
 
-        # Critério de paragem: variação do custo J desprezável
+        # Recalcular atribuicoes para os centroides atualizados
+        dists = np.sum(
+            (X[:, np.newaxis, :] - C[np.newaxis, :, :]) ** 2,
+            axis=2
+        )
+        z = np.argmin(dists, axis=1)
+
+        # Calcular custo consistente com os centroides e atribuicoes
         _, J_atual = kmeans_custo(X, C, z)
-        if J_anterior is not None and abs(J_anterior - J_atual) < tol:
-            break
+
+        # Criterio de paragem
+        if J_anterior is not None:
+            if abs(J_anterior - J_atual) < tol:
+                break
+
         J_anterior = J_atual
 
-    # Atribuição final com os centróides convergidos
-    dists = np.sum((X[:, np.newaxis, :] - C[np.newaxis, :, :]) ** 2, axis=2)
+    # Atribuicao final
+    dists = np.sum(
+        (X[:, np.newaxis, :] - C[np.newaxis, :, :]) ** 2,
+        axis=2
+    )
     z = np.argmin(dists, axis=1)
 
     return C, z
 
-#------------------------------------------------------------------------------------#
 
-# Garante que o bloco só corre quando corre o ficheiro diretamente
+# -------------------------------------------------------------------
+# Execucao principal
+# -------------------------------------------------------------------
+
 if __name__ == "__main__":
-    filename = sys.argv[1] if len(sys.argv) > 1 else "Xtrain.pkl"
-# Forma flexivel de não ter o nome do fichieor fixo no código
+
+    filename = (
+        sys.argv[1] if len(sys.argv) > 1 else "Xtrain.pkl"
+    )
+
+    # Ler os dados
     df_train = pd.read_pickle(filename)
-    X = np.concatenate(df_train['Skeleton_Sequence'].to_numpy())
-    print("Shape de X:", X.shape)  # deve dar (N, 66)
-    
-# Para testes/debug podemos meter K=valor fixo     
-K_valores = range(1, 11)  # testa K de 1 a 10, temos que alterar consoante o enunciado
+
+    # Concatenar todas as poses de todas as sequencias
+    X = np.concatenate(
+        df_train["Skeleton_Sequence"].to_numpy()
+    )
+
+    print("Shape de X:", X.shape)
+
+    # Testar diferentes valores de K
+    K_valores = range(1, 11)
     custos = []
 
     for K in K_valores:
         C, z = kmeans(X, K, flag="random")
         _, J = kmeans_custo(X, C, z)
+
         custos.append(J)
+
         print(f"K={K} -> custo J={J:.2f}")
 
-    # --- Gráfico ---
-    import matplotlib.pyplot as plt
+    # Grafico do custo em funcao de K
 
-    plt.plot(list(K_valores), custos, marker='o')
-    plt.xlabel("Número de centróides (K)")
+    plt.plot(list(K_valores), custos, marker="o")
+    plt.xlabel("Numero de centroides (K)")
     plt.ylabel("Custo J")
-    plt.title("Custo do k-means em função de K (inicialização random)")
-    plt.savefig("PartI2a.jpg")  # nome pedido no enunciado
+    plt.title(
+        "Custo do k-means em funcao de K "
+        "(inicializacao random)"
+    )
+    plt.xticks(list(K_valores))
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig("PartI2a.jpg", dpi=300)
     plt.show()
