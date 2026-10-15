@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import sys
 import matplotlib.pyplot as plt
+import os
+os.makedirs("figures", exist_ok=True)
 
 # NAO MODIFICAR A SEED
 np.random.seed(555)
@@ -224,5 +226,5 @@ if __name__ == "__main__":
     plt.xticks(list(K_valores))
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("PartI2a.jpg", dpi=300)
+    plt.savefig("figures/PartI2a.jpg", dpi=300)
     plt.show()

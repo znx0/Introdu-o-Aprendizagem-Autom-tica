@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+os.makedirs("figures", exist_ok=True)
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from kmeans import kmeans, kmeans_custo
@@ -41,7 +43,7 @@ plt.title("PCA: variância explicada acumulada")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.savefig("PartII5a.jpg", dpi=300)
+plt.savefig("figures/PartII5a.jpg", dpi=300)
 
 # --- R5.b ---
 
@@ -79,7 +81,7 @@ axs[-1].set_xticklabels(
 )
 axs[-1].set_xlabel("Característica original (marcador + coordenada)")
 plt.tight_layout()
-plt.savefig("PartII5b.jpg", dpi=300)
+plt.savefig("figures/PartII5b.jpg", dpi=300)
 
 # --- R6: PCA implementado de raiz (apenas numpy) ---
 
@@ -124,7 +126,7 @@ plt.ylabel("Componente principal 2")
 plt.title("Dados projetados em 2 componentes principais")
 plt.grid(True)
 plt.tight_layout()
-plt.savefig("PartII6a.jpg", dpi=300)
+plt.savefig("figures/PartII6a.jpg", dpi=300)
 
 # --- R6.b ---
 # Reconstrução com r = 2
@@ -158,7 +160,7 @@ plt.title("Erro de reconstrução por marcador (r = 2)")
 plt.xticks(range(33))
 plt.grid(True, axis="y")
 plt.tight_layout()
-plt.savefig("PartII6b.jpg", dpi=300)
+plt.savefig("figures/PartII6b.jpg", dpi=300)
 
 # --- R6.c ---
 def avaliar_reconstrucao(r):
@@ -203,5 +205,5 @@ plt.xticks(range(33))
 plt.legend()
 plt.grid(True, axis="y")
 plt.tight_layout()
-plt.savefig("PartII6c.jpg", dpi=300)
+plt.savefig("figures/PartII6c.jpg", dpi=300)
 plt.show()
