@@ -38,7 +38,7 @@ Executar os scripts a partir da raiz do projeto, onde se encontra o `Xtrain.pkl`
 
 ```bash
 python kmeans.py Xtrain.pkl
-python pca.py | tee saida_7a.txt (por exemplo)
+python pca.py | tee outputs/saida_7a.txt (por exemplo)
 ```
 
 ## Guardar os resultados
