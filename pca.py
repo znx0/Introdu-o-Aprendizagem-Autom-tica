@@ -159,4 +159,49 @@ plt.xticks(range(33))
 plt.grid(True, axis="y")
 plt.tight_layout()
 plt.savefig("PartII6b.jpg", dpi=300)
-plt.show ()
+
+# --- R6.c ---
+def avaliar_reconstrucao(r):
+    """Projeta, reconstrói e mede o erro para r componentes."""
+    Z = pca_project(X_norm, media, W, r)
+    X_norm_rec = pca_reconstruct(Z, media, W)
+    X_rec = scaler.inverse_transform(X_norm_rec)
+
+    var_expl = var_ratio[:r].sum()
+    mse_orig = np.mean((X - X_rec) ** 2)
+    mse_norm = np.mean((X_norm - X_norm_rec) ** 2)
+
+    erro_feat = np.mean((X - X_rec) ** 2, axis=0)
+    erro_marc = erro_feat[0::2] + erro_feat[1::2]
+    return Z, var_expl, mse_orig, mse_norm, erro_marc
+
+r_95 = n_95   # 8, obtido na R5.a
+Z8, var8, mse_orig8, mse_norm8, erro_marc8 = avaliar_reconstrucao(r_95)
+_, var2, mse_orig2, mse_norm2, erro_marc2 = avaliar_reconstrucao(2)
+
+print("Shape de Z (r = 8):", Z8.shape)
+print(f"\n{'':22s}{'r = 2':>12s}{'r = ' + str(r_95):>12s}")
+print(f"{'Variância explicada':22s}{var2:12.4%}{var8:12.4%}")
+print(f"{'MSE (original)':22s}{mse_orig2:12.6f}{mse_orig8:12.6f}")
+print(f"{'MSE (normalizado)':22s}{mse_norm2:12.6f}{mse_norm8:12.6f}")
+print("Verificação: 1 - variância explicada (r = 8) =", 1 - var8)
+
+ordem8 = np.argsort(erro_marc8)[::-1]
+print("\nMarcadores com maior erro (r = 8):")
+for j in ordem8[:10]:
+    print(f"Marcador {j}: {erro_marc8[j]:.6f}   (r = 2: {erro_marc2[j]:.6f})")
+
+# Figura: erro por marcador, r = 2 vs r = 8, com o mesmo eixo
+x = np.arange(33)
+plt.figure(figsize=(10, 4))
+plt.bar(x - 0.2, erro_marc2, width=0.4, label="r = 2")
+plt.bar(x + 0.2, erro_marc8, width=0.4, label=f"r = {r_95}")
+plt.xlabel("Marcador")
+plt.ylabel("Erro quadrático médio (u² + v²)")
+plt.title("Erro de reconstrução por marcador")
+plt.xticks(range(33))
+plt.legend()
+plt.grid(True, axis="y")
+plt.tight_layout()
+plt.savefig("PartII6c.jpg", dpi=300)
+plt.show()

@@ -40,11 +40,25 @@ dos marcadores do esqueleto.
 A relação entre estas componentes e os centróides obtidos pelo k-means na R3.a deverá ser analisada comparando os padrões de coordenadas dos centróides com as características de maior peso no PCA. 
 Sem inspecionar esses centróides, não é possível estabelecer uma correspondência concreta entre os dois métodos.
 
-6a)
+6a)Foi aplicado o PCA, implementado com NumPy, para reduzir as 66 características originais a duas componentes principais,
+ obtendo uma projeção de 8374 poses que explica 62,84% da variância total, o que dá evidência que a implementação está correta. 
+ Observa-se uma região central densa, da qual partem vários braços em diferentes direções, alguns terminando em concentrações de pontos, 
+ nomeadamente à esquerda, à direita e na região inferior. 
+ Estas concentrações poderão corresponder a poses frequentes, enquanto as zonas mais dispersas poderão refletir transições entre poses consecutivas. 
+ De acordo com a R5.b, a PC1 é influenciada sobretudo pelas coordenadas "v", enquanto a PC2 apresenta contribuições importantes das coordenadas "u". 
+ Apesar das várias regiões de concentração, a sobreposição dos pontos não permite determinar claramente o número de clusters, sendo necessário complementar esta análise com outras visualizações.
 
-6b)
+6b)As duas componentes principais explicam 62,84% da variância total. O erro quadrático médio de reconstrução (MSE), calculado sobre todas as poses e as 66 características, é 0,002589 no espaço original e 0,371601 no espaço normalizado. 
+Os maiores erros absolutos ocorrem nos marcadores 15–22, correspondentes aos pulsos e às mãos, destacando-se o marcador 19 (MSE de 0,018261). 
+Em contraste, os marcadores 23 e 24, correspondentes às ancas, apresentam erros reduzidos. 
+Na R5.b, as coordenadas dos marcadores dos membros superiores também surgem entre as características relevantes das componentes PC3, PC5, PC6 e PC8, sugerindo que parte da sua variabilidade não é captada pelas duas primeiras componentes. 
+A comparação do erro relativo e do desvio padrão permitirá determinar se os maiores erros absolutos resultam sobretudo da amplitude de movimento ou de uma representação menos eficaz pelo PCA.
 
-7c)
+6c)R6.c) Com oito componentes principais, a projeção passa a ter dimensão (8374 x 8) e explica 95,25% da variância, face aos 62,84% obtidos com duas componentes. Embora preserve mais informação, deixa de ser diretamente visualizável num gráfico 2D.
+O MSE diminui de 0,002589 para 0,000287 no espaço original e de 0,371601 para 0,047536 no espaço normalizado, correspondendo a reduções de aproximadamente 9 e 7,8 vezes. Esta diferença deve-se às distintas escalas dos dados em cada espaço.
+O erro do marcador 19 diminui de 0,018261 para 0,001493 (cerca de 91,8%), e o marcador 20 passa a apresentar o maior erro. Apesar da melhoria, permanecem 4,75% da variância por explicar, que pertence principalmente aos marcadores 15 a 22 devido a serem os de maior erro. 
+Para concluir se os pulsos e as mãos (marcadores 15–22) melhoram mais do que os pés, é necessário comparar a redução dos erros entre essas regiões.
+
 
 8a)
 
