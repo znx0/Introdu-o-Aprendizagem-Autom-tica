@@ -1,0 +1,15 @@
+MSE (espaço original): 0.0025890798535726438
+MSE (espaço normalizado): 0.3716005625371983
+Verificação: 1 - variância explicada = 0.3716005625371981
+
+Marcadores com maior erro de reconstrução:
+Marcador 19: 0.018261
+Marcador 17: 0.017275
+Marcador 20: 0.016824
+Marcador 18: 0.015924
+Marcador 21: 0.012300
+Marcador 22: 0.011740
+Marcador 15: 0.011040
+Marcador 16: 0.010658
+Marcador 32: 0.005459
+Marcador 31: 0.004846

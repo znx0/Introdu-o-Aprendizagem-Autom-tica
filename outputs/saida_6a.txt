@@ -1,0 +1,2 @@
+Shape de Z2: (8374, 2)
+Variância explicada pelas 2 componentes: 0.6283994374628019

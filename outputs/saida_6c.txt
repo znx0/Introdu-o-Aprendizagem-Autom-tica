@@ -1,0 +1,153 @@
+Componentes para 95% da variância: 8
+Variância acumulada com esse número: 95.2464%
+Número total de componentes: 66
+Variância explicada pelas primeiras 7: 93.4013%
+Variância explicada pelas primeiras 8: 95.2464%
+
+Componente principal 1
+Variancia explicada: 39.0330%
+Top 10 caracteristicas:
+Marcador 11 - v: peso = 0.1811
+Marcador 13 - v: peso = 0.1802
+Marcador 7 - v: peso = 0.1750
+Marcador 9 - v: peso = 0.1738
+Marcador 12 - v: peso = 0.1724
+Marcador 10 - v: peso = 0.1722
+Marcador 6 - v: peso = 0.1716
+Marcador 5 - v: peso = 0.1716
+Marcador 2 - v: peso = 0.1715
+Marcador 1 - v: peso = 0.1714
+
+Componente principal 2
+Variancia explicada: 23.8070%
+Top 10 caracteristicas:
+Marcador 13 - u: peso = 0.2136
+Marcador 0 - u: peso = 0.1823
+Marcador 10 - u: peso = 0.1812
+Marcador 9 - u: peso = 0.1809
+Marcador 3 - u: peso = 0.1782
+Marcador 4 - u: peso = 0.1776
+Marcador 2 - u: peso = 0.1776
+Marcador 15 - u: peso = 0.1766
+Marcador 6 - u: peso = 0.1763
+Marcador 1 - u: peso = 0.1760
+
+Componente principal 3
+Variancia explicada: 11.5554%
+Top 10 caracteristicas:
+Marcador 28 - u: peso = 0.3025
+Marcador 32 - u: peso = 0.2997
+Marcador 30 - u: peso = 0.2982
+Marcador 26 - u: peso = 0.2793
+Marcador 18 - u: peso = -0.2327
+Marcador 20 - u: peso = -0.2206
+Marcador 28 - v: peso = -0.2140
+Marcador 16 - u: peso = -0.2134
+Marcador 30 - v: peso = -0.2133
+Marcador 22 - u: peso = -0.2129
+
+Componente principal 4
+Variancia explicada: 9.1152%
+Top 10 caracteristicas:
+Marcador 31 - v: peso = 0.3639
+Marcador 29 - v: peso = 0.3580
+Marcador 27 - v: peso = 0.3523
+Marcador 25 - v: peso = 0.2896
+Marcador 29 - u: peso = 0.2531
+Marcador 27 - u: peso = 0.2526
+Marcador 31 - u: peso = 0.2509
+Marcador 24 - v: peso = -0.2282
+Marcador 23 - v: peso = 0.2116
+Marcador 32 - v: peso = -0.1961
+
+Componente principal 5
+Variancia explicada: 4.1170%
+Top 10 caracteristicas:
+Marcador 32 - v: peso = 0.3688
+Marcador 28 - v: peso = 0.3369
+Marcador 30 - v: peso = 0.3368
+Marcador 26 - v: peso = 0.2501
+Marcador 18 - u: peso = -0.2090
+Marcador 16 - u: peso = -0.1983
+Marcador 26 - u: peso = 0.1981
+Marcador 22 - u: peso = -0.1943
+Marcador 20 - u: peso = -0.1936
+Marcador 24 - u: peso = 0.1788
+
+Componente principal 6
+Variancia explicada: 3.3774%
+Top 10 caracteristicas:
+Marcador 15 - u: peso = 0.3319
+Marcador 17 - u: peso = 0.3312
+Marcador 21 - u: peso = 0.3249
+Marcador 19 - u: peso = 0.2954
+Marcador 13 - u: peso = 0.2499
+Marcador 24 - u: peso = -0.1989
+Marcador 23 - u: peso = 0.1848
+Marcador 29 - v: peso = 0.1695
+Marcador 27 - v: peso = 0.1633
+Marcador 32 - v: peso = 0.1484
+
+Componente principal 7
+Variancia explicada: 2.3963%
+Top 10 caracteristicas:
+Marcador 23 - u: peso = 0.5743
+Marcador 24 - u: peso = -0.5675
+Marcador 25 - u: peso = 0.2647
+Marcador 31 - u: peso = 0.1904
+Marcador 32 - u: peso = 0.1500
+Marcador 29 - v: peso = -0.1384
+Marcador 27 - v: peso = -0.1313
+Marcador 29 - u: peso = 0.1302
+Marcador 27 - u: peso = 0.1222
+Marcador 18 - v: peso = -0.1034
+
+Componente principal 8
+Variancia explicada: 1.8452%
+Top 10 caracteristicas:
+Marcador 26 - u: peso = 0.3323
+Marcador 25 - u: peso = -0.2848
+Marcador 17 - v: peso = -0.2377
+Marcador 19 - v: peso = -0.2251
+Marcador 19 - u: peso = 0.2030
+Marcador 15 - v: peso = -0.2019
+Marcador 21 - v: peso = -0.2007
+Marcador 18 - v: peso = -0.1946
+Marcador 29 - u: peso = 0.1843
+Marcador 20 - v: peso = -0.1782
+Shape de Z2: (8374, 2)
+Variância explicada pelas 2 componentes: 0.6283994374628019
+MSE (espaço original): 0.0025890798535726438
+MSE (espaço normalizado): 0.3716005625371983
+Verificação: 1 - variância explicada = 0.3716005625371981
+
+Marcadores com maior erro de reconstrução:
+Marcador 19: 0.018261
+Marcador 17: 0.017275
+Marcador 20: 0.016824
+Marcador 18: 0.015924
+Marcador 21: 0.012300
+Marcador 22: 0.011740
+Marcador 15: 0.011040
+Marcador 16: 0.010658
+Marcador 32: 0.005459
+Marcador 31: 0.004846
+Shape de Z (r = 8): (8374, 8)
+
+                             r = 2       r = 8
+Variância explicada       62.8399%    95.2464%
+MSE (original)            0.002589    0.000287
+MSE (normalizado)         0.371601    0.047536
+Verificação: 1 - variância explicada (r = 8) = 0.04753579275065278
+
+Marcadores com maior erro (r = 8):
+Marcador 20: 0.001873   (r = 2: 0.016824)
+Marcador 18: 0.001768   (r = 2: 0.015924)
+Marcador 19: 0.001493   (r = 2: 0.018261)
+Marcador 22: 0.001450   (r = 2: 0.011740)
+Marcador 16: 0.001351   (r = 2: 0.010658)
+Marcador 17: 0.001283   (r = 2: 0.017275)
+Marcador 21: 0.000964   (r = 2: 0.012300)
+Marcador 15: 0.000853   (r = 2: 0.011040)
+Marcador 14: 0.000841   (r = 2: 0.002036)
+Marcador 31: 0.000711   (r = 2: 0.004846)
