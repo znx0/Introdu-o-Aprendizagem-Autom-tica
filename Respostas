@@ -15,3 +15,37 @@ Output: Componentes para 95% da variância: 8
 	Número total de componentes: 66
 	Variância explicada pelas primeiras 7: 93.4013%
 	Variância explicada pelas primeiras 8: 95.2464%
+
+5b) Para analisar a contribuição das características originais para cada componente principal, 
+foram inspecionados os pesos (loadings) das oito componentes identificadas na R5.a.
+Para cada componente, selecionaram-se as dez características com maior valor absoluto do peso, 
+permitindo identificar os marcadores e as coordenadas (u) e (v) com maior influência na respetiva componente.
+
+Os resultados mostram que a primeira componente principal (PC1), responsável por 39,03% da variância total, 
+é dominada pelas coordenadas (v) de vários marcadores, cujos pesos são predominantemente positivos. 
+A segunda componente (PC2), que explica 23,81% da variância, apresenta uma contribuição elevada sobretudo das coordenadas (u). 
+Em conjunto, estas duas componentes explicam aproximadamente 62,84% da variância dos dados.
+
+Nas componentes seguintes, a contribuição das características torna-se mais localizada. 
+A PC3 destaca principalmente as coordenadas (u) dos marcadores 28, 32, 30 e 26, 
+apresentando também pesos negativos associados a outros marcadores. 
+A PC4 evidencia sobretudo as coordenadas (v) dos marcadores 31, 29 e 27. 
+As componentes PC5 a PC8 apresentam padrões adicionais de variação, com pesos positivos e negativos em diferentes características.
+
+A presença de pesos com sinais opostos indica que determinadas características 
+variam em direções contrárias ao longo da respetiva componente principal. 
+Contudo, a interpretação física destes padrões depende da localização e do significado 
+dos marcadores do esqueleto.
+
+A relação entre estas componentes e os centróides obtidos pelo k-means na R3.a deverá ser analisada comparando os padrões de coordenadas dos centróides com as características de maior peso no PCA. 
+Sem inspecionar esses centróides, não é possível estabelecer uma correspondência concreta entre os dois métodos.
+
+6a)
+
+6b)
+
+7c)
+
+8a)
+
+Q10)
