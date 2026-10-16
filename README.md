@@ -55,6 +55,10 @@ Os resultados devem ficar organizados automaticamente nas pastas correspondentes
 plt.savefig(figures/"PARTII5a.jpg", dpi=300)
 ```
 
+## NOTA
+
+Durante o desenvolvimento, é perfeitamente normal termos vários ficheiros .py para testar e resolver cada parte do projeto separadamente. No final, teremos de integrar o código desenvolvido num único ficheiro kmeans.py, juntando as implementações e os testes necessários. Para já, não há problema em manter os ficheiros separados, pois facilita o desenvolvimento e a validação dos resultados.
+
 ## Fluxo de trabalho com Git
 
 Antes de começares a trabalhar, atualiza a tua cópia local:
