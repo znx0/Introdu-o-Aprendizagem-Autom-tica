@@ -1,7 +1,7 @@
 # Intro à Aprendizagem Automática
 
 - Fica aqui também o PDF do enunciado já meio preenchido. Se fizeres alterações ao código ou aos documentos, basta fazeres commit e push para atualizar o repositório.
-- Os ficheiros `.py` contêm as implementações dos algoritmos. Convém rever o código e os resultados antes de avançarmos para as restantes questões.
+- O ficheiro `RESPOSTAS`, mete lá antes de escrever no PDF, serve de rascunho e backup caso aconteça algo!
 - O `requirements.txt` contém as bibliotecas necessárias para executar o projeto.
 
 ## Como começar
