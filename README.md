@@ -55,6 +55,8 @@ Os resultados devem ficar organizados automaticamente nas pastas correspondentes
 plt.savefig(figures/"PARTII5a.jpg", dpi=300)
 ```
 
+Se editares o pca.py que criei, caso queiras dar plot a alguma imagens, tens que apagar o `plt.show()` e meter **SEMPRE** como a ultima linha de código do programa, caso contrário ele não irá dar print ao que queres.
+
 ## NOTA
 
 Durante o desenvolvimento, é perfeitamente normal termos vários ficheiros .py para testar e resolver cada parte do projeto separadamente. No final, teremos de integrar o código desenvolvido num único ficheiro kmeans.py, juntando as implementações e os testes necessários. Para já, não há problema em manter os ficheiros separados, pois facilita o desenvolvimento e a validação dos resultados.
