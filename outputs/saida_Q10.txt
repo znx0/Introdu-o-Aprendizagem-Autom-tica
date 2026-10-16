@@ -1,0 +1,110 @@
+Colunas: ['Skeleton_Sequence']
+Número de sequências: 71
+min / mediana / max: 30 81.0 385
+Total de poses: 8374
+u: min/max = -0.352 0.381
+v: min/max = -0.64 0.773
+
+Variação ENTRE sequências (desvio padrão): [0.049 0.024 0.077 0.091 0.087 0.061 0.046 0.075 0.034 0.076]
+Variação DENTRO de uma sequência (média): [0.141 0.102 0.147 0.158 0.182 0.125 0.162 0.173 0.133 0.189]
+
+[mediana, ar = 1]
+  Mediana da posição: 25.0 (ao acaso seria ~35)
+  Fração em que a própria metade é a mais próxima: 0.028
+
+[percentil 90, ar = 1]
+  Mediana da posição: 16.0 (ao acaso seria ~35)
+  Fração em que a própria metade é a mais próxima: 0.07
+
+[robusto (tronco p90), ar = 1]
+  Mediana da posição: 21.0 (ao acaso seria ~35)
+  Fração em que a própria metade é a mais próxima: 0.042
+
+[mediana, ar = 1.78]
+  Mediana da posição: 21.0 (ao acaso seria ~35)
+  Fração em que a própria metade é a mais próxima: 0.042
+
+[percentil 90, ar = 1.78]
+  Mediana da posição: 17.0 (ao acaso seria ~35)
+  Fração em que a própria metade é a mais próxima: 0.07
+
+[robusto, ar = 1.78]
+  Mediana da posição: 17.0 (ao acaso seria ~35)
+  Fração em que a própria metade é a mais próxima: 0.099
+
+Silhouette por número de grupos:
+   K | mediana |   p90   | robusto
+   2 |   0.438 |   0.825 |   0.607
+   3 |   0.444 |   0.759 |   0.420
+   4 |   0.316 |   0.737 |   0.355
+   5 |   0.329 |   0.689 |   0.339
+   6 |   0.335 |   0.728 |   0.408
+   7 |   0.343 |   0.646 |   0.332
+   8 |   0.316 |   0.390 |   0.288
+   9 |   0.265 |   0.407 |   0.247
+  10 |   0.311 |   0.335 |   0.333
+  11 |   0.344 |   0.437 |   0.272
+  12 |   0.312 |   0.323 |   0.314
+  13 |   0.284 |   0.425 |   0.330
+  14 |   0.308 |   0.340 |   0.244
+  15 |   0.280 |   0.364 |   0.252
+
+Dendrograma (mediana) cortado em 2 grupos -> tamanhos: [19 52]
+
+Dendrograma (mediana) cortado em 3 grupos -> tamanhos: [19  5 47]
+
+Dendrograma (mediana) cortado em 4 grupos -> tamanhos: [19  5 22 25]
+
+Dendrograma (robusto) cortado em 2 grupos -> tamanhos: [24 47]
+
+Dendrograma (robusto) cortado em 3 grupos -> tamanhos: [24 20 27]
+
+Dendrograma (robusto) cortado em 4 grupos -> tamanhos: [24 20 26  1]
+
+Estabilidade (ARI entre descritores):
+  K = 2: ARI(mediana, p90) = -0.012 | ARI(mediana, robusto) = -0.014 | ARI(p90, robusto) = 0.150
+        tamanhos: mediana [70  1] | p90 [45 26] | robusto [24 47]
+  K = 3: ARI(mediana, p90) = 0.194 | ARI(mediana, robusto) = 0.515 | ARI(p90, robusto) = 0.353
+        tamanhos: mediana [13 20 38] | p90 [45 13 13] | robusto [20 24 27]
+  K = 4: ARI(mediana, p90) = 0.343 | ARI(mediana, robusto) = 0.472 | ARI(p90, robusto) = 0.694
+        tamanhos: mediana [ 7  7 41 16] | p90 [24 15 11 21] | robusto [27 23  1 20]
+
+Tronco mediano por sequência (min/mediana/max): 0.343 0.433 0.477
+Piores razões tronco mínimo / tronco mediano: [0.31 0.32 0.33 0.34 0.34]
+Sequências com valores mais extremos no p90: [17  5 52 15 25 44 70 19]
+  valores: [2.3 2.2 2.2 2.  2.  1.9 1.8 1.8]
+Grupo p90 0: n = 45, comprimento mediano = 65.0, tronco mediano = 0.435
+Grupo p90 1: n = 26, comprimento mediano = 201.5, tronco mediano = 0.423
+Grupo robusto 0: n = 47, comprimento mediano = 114.0, tronco mediano = 0.430
+Grupo robusto 1: n = 24, comprimento mediano = 71.0, tronco mediano = 0.452
+
+Estabilidade entre metades (ARI, Ward):
+  K = 2: ARI(A, B) = 0.780 | ARI(A, completo) = 0.888 | ARI(B, completo) = 0.888
+  K = 3: ARI(A, B) = 0.749 | ARI(A, completo) = 0.441 | ARI(B, completo) = 0.425
+  K = 4: ARI(A, B) = 0.293 | ARI(A, completo) = 0.563 | ARI(B, completo) = 0.371
+Grupo 1: n = 24, comprimento mediano = 71.0, intervalo = 30-113
+Grupo 2: n = 20, comprimento mediano = 217.5, intervalo = 106-385
+Grupo 3: n = 27, comprimento mediano = 63.0, intervalo = 47-332
+
+ARI com vários arranques:
+  K = 2: ARI(robusto, mediana) = 0.888 | tamanhos: [47 24] e [49 22]
+  K = 3: ARI(robusto, mediana) = 0.457 | tamanhos: [24 20 27] e [21  5 45]
+  K = 4: ARI(robusto, mediana) = 0.548 | tamanhos: [24 19 27  1] e [ 5 20 28 18]
+
+Spearman entre cada descritor robusto e log(comprimento):
+  segmento 11-12: rho = -0.10
+  segmento 23-24: rho = +0.18
+  segmento 11-13: rho = +0.50
+  segmento 13-15: rho = +0.58
+  segmento 12-14: rho = +0.57
+  segmento 14-16: rho = +0.31
+  segmento 23-25: rho = +0.16
+  segmento 25-27: rho = -0.10
+  segmento 24-26: rho = +0.45
+  segmento 26-28: rho = +0.22
+
+Janelas de 30 poses (comprimento igual para todas):
+  K = 2: ARI(janela, completo) = -0.014 | tamanhos: [70  1]
+  K = 3: ARI(janela, completo) = 0.007 | tamanhos: [ 2 68  1]
+
+Sequências isoladas em K = 4: [11]
